@@ -66,7 +66,7 @@ const Sidebar = () => {
             alt=""
             width={45}
           />
-          <span className="text-xl whitespace-pre">Fireball</span>
+          <span className="text-xl whitespace-pre">Elementium</span>
         </div>
 
         {/* Menus */}
@@ -76,19 +76,19 @@ const Sidebar = () => {
             <li>
               <NavLink to="/" className={"link"}>
                 <AiOutlineAppstore size={23} className="min-w-max" />
-                Dashboard
+                {isOpen && <span>Dashboard</span>}
               </NavLink>
             </li>
             <li>
               <NavLink to="/authentication" className={"link"}>
                 <BsPerson size={23} className="min-w-max" />
-                Authenication
+                {isOpen && <span>Authentication</span>}
               </NavLink>
             </li>
             <li>
               <NavLink to="/storage" className={"link"}>
                 <HiOutlineDatabase size={23} className="min-w-max" />
-                Storage
+                {isOpen && <span>Storage</span>}
               </NavLink>
             </li>
 
@@ -109,7 +109,7 @@ const Sidebar = () => {
             <li>
               <NavLink to="/settings" className={"link"}>
                 <SlSettings size={23} className="min-w-max" />
-                Settings
+                <span className={`${isOpen && "block"} hidden`}>Storage</span>
               </NavLink>
             </li>
           </ul>
@@ -129,7 +129,7 @@ const Sidebar = () => {
           )}
         </div>
 
-        {/* control button */}
+        {/* toggle menu button */}
         <motion.div
           animate={
             isOpen
