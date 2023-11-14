@@ -10,7 +10,9 @@ const SubMenu = ({ data }) => {
   return (
     <>
       <li
-        className={`link ${pathname.includes(data.name) && "text-blue-600"}`}
+        className={`link duration-75 ${
+          pathname.includes(data.name) && "text-blue-600"
+        }`}
         onClick={() => setSubMenuOpen(!subMenuOpen)}
       >
         {/* Dynamic react icon */}
@@ -25,7 +27,10 @@ const SubMenu = ({ data }) => {
         {data.menus.map((item, index) => (
           <li key={item}>
             {/* /build/auth /build/hosting */}
-            <NavLink to={`/${data.name}/${item}`} className="link capitalize ">
+            <NavLink
+              to={`/${data.name}/${item}`}
+              className="link capitalize !bg-transparent"
+            >
               {item}
             </NavLink>
           </li>

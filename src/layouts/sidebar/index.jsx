@@ -72,7 +72,7 @@ const Sidebar = () => {
         {/* Menus */}
         <div className="flex flex-col h-full">
           {/* first */}
-          <ul className="whitespace-pre  scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-50 px-2.5 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden">
+          <ul className="whitespace-pre  scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-50 px-2.5 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden h-[70%] md:max-h-[68%]">
             <li>
               <NavLink to="/" className={"link"}>
                 <AiOutlineAppstore size={23} className="min-w-max" />
@@ -91,17 +91,20 @@ const Sidebar = () => {
                 Storage
               </NavLink>
             </li>
-            {/* submenu */}
-            <div className="border-y py-5 border-slate-300">
-              <small className="pl-3 text-slate-500 inline-block mb-2">
-                Product categories
-              </small>
-              <div className="flex flex-col gap-1">
-                {subMenusList?.map((menu, index) => (
-                  <SubMenu data={menu} key={menu.name} />
-                ))}
+
+            {/* only show submenus when sidebar is open */}
+            {isOpen && (
+              <div className="border-y py-5 border-slate-300">
+                <small className="pl-3 text-slate-500 inline-block mb-2">
+                  Product categories
+                </small>
+                <div className="flex flex-col gap-1">
+                  {subMenusList?.map((menu, index) => (
+                    <SubMenu data={menu} key={menu.name} />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <li>
               <NavLink to="/settings" className={"link"}>
@@ -111,7 +114,19 @@ const Sidebar = () => {
             </li>
           </ul>
           {/* second */}
-          <div className=""></div>
+          {isOpen && (
+            <div className="flex-1 text-sm z-50 max-h-48 my-auto whitespace-pre w-full font-medium">
+              <div className="flex border-y border-slate-300 p-4 items-center justify-between">
+                <div>
+                  <p>Spark</p>
+                  <small>No cost $0/month</small>
+                </div>
+                <p className="text-teal-500 py-1.5 px-3 text-xs bg-teal-50 rounded-full">
+                  Upgrade
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* control button */}
