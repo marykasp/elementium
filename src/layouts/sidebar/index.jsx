@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { NavLink } from "react-router-dom";
 
 // react icons
 import { IoIosArrowBack } from "react-icons/io";
@@ -38,6 +39,7 @@ const Sidebar = () => {
         animate={isOpen ? "open" : "closed"}
         className="bg-white text-gray shadow-xl z-[999] w-[16rem] max-w-[16rem] h-screen overflow-hidden md:relative fixed"
       >
+        {/* Logo */}
         <div className="flex items-center gap-2.5 font-medium border-b border-slate-300 py-3 mx-3">
           <img
             src="https://img.icons8.com/color/512/firebase.png"
@@ -46,6 +48,44 @@ const Sidebar = () => {
           />
           <span className="text-xl whitespace-pre">Fireball</span>
         </div>
+
+        {/* Menus */}
+        <div className="flex flex-col h-full">
+          {/* first */}
+          <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden">
+            <li>
+              <NavLink to="/" className={"link"}>
+                <AiOutlineAppstore size={23} className="min-w-max" />
+                Dashboard
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/authentication" className={"link"}>
+                <BsPerson size={23} className="min-w-max" />
+                Authenication
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/storage" className={"link"}>
+                <HiOutlineDatabase size={23} className="min-w-max" />
+                Storage
+              </NavLink>
+            </li>
+            {/* submenu */}
+            <div className="border-y py-5 border-slate-300">
+              <small>Product categories</small>
+            </div>
+            <li>
+              <NavLink to="/settings" className={"link"}>
+                <SlSettings size={23} className="min-w-max" />
+                Settings
+              </NavLink>
+            </li>
+          </ul>
+          {/* second */}
+          <div className=""></div>
+        </div>
+
         {/* control button */}
         <motion.div
           animate={
