@@ -72,7 +72,7 @@ const Sidebar = () => {
         {/* Menus */}
         <div className="flex flex-col h-full">
           {/* first */}
-          <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden">
+          <ul className="whitespace-pre  scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-50 px-2.5 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden">
             <li>
               <NavLink to="/" className={"link"}>
                 <AiOutlineAppstore size={23} className="min-w-max" />
