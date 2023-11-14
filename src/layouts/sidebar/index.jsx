@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 // other packages
 import { motion } from "framer-motion";
@@ -20,6 +20,7 @@ import { MdMenu } from "react-icons/md";
 
 const Sidebar = () => {
   let isTab = useMediaQuery({ query: "(max-width: 768px)" });
+  const { pathname } = useLocation();
 
   // sidebar open state if not in mobile (initial state)
   const [isOpen, setIsOpen] = useState(isTab ? false : true);
@@ -34,6 +35,11 @@ const Sidebar = () => {
       setIsOpen(true);
     }
   }, [isTab]);
+
+  // pathname change -> close sidebar (only on mobile view)
+  useEffect(() => {
+    isTab && setIsOpen(false);
+  }, [pathname]);
 
   const SidebarAnimation = isTab
     ? // mobile view
@@ -96,6 +102,7 @@ const Sidebar = () => {
       ></div>
       <motion.div
         variants={SidebarAnimation}
+        initial={{ x: isTab ? -250 : 0 }}
         animate={isOpen ? "open" : "closed"}
         className="bg-white text-gray shadow-xl z-[999] w-[16rem] max-w-[16rem] h-screen overflow-hidden md:relative fixed"
       >
