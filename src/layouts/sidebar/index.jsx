@@ -1,7 +1,12 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { NavLink } from "react-router-dom";
+
+// other packages
+import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
+
+// components
+import SubMenu from "./SubMenu";
 
 // react icons
 import { IoIosArrowBack } from "react-icons/io";
@@ -29,6 +34,21 @@ const Sidebar = () => {
       },
     },
   };
+
+  const subMenusList = [
+    {
+      // main menu name (dashboard, settings)
+      name: "build",
+      icon: RiBuilding3Line,
+      // submenus
+      menus: ["auth", "app settings", "storage", "hosting"],
+    },
+    {
+      name: "analytics",
+      icon: TbReportAnalytics,
+      menus: ["dashboard", "realtime", "events"],
+    },
+  ];
 
   const [isOpen, setIsOpen] = useState(true);
 
@@ -73,8 +93,16 @@ const Sidebar = () => {
             </li>
             {/* submenu */}
             <div className="border-y py-5 border-slate-300">
-              <small>Product categories</small>
+              <small className="pl-3 text-slate-500 inline-block mb-2">
+                Product categories
+              </small>
+              <div className="flex flex-col gap-1">
+                {subMenusList?.map((menu, index) => (
+                  <SubMenu data={menu} key={menu.name} />
+                ))}
+              </div>
             </div>
+
             <li>
               <NavLink to="/settings" className={"link"}>
                 <SlSettings size={23} className="min-w-max" />
