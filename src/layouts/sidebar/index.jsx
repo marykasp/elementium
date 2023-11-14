@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 // other packages
@@ -19,21 +19,56 @@ import { RiBuilding3Line } from "react-icons/ri";
 import { MdMenu } from "react-icons/md";
 
 const Sidebar = () => {
-  const SidebarAnimation = {
-    // System view
-    open: {
-      width: "16rem",
-      transition: {
-        damping: 40,
-      },
-    },
-    closed: {
-      width: "4rem",
-      transition: {
-        damping: 40,
-      },
-    },
-  };
+  let isTab = useMediaQuery({ query: "(max-width: 768px)" });
+
+  // sidebar open state if not in mobile (initial state)
+  const [isOpen, setIsOpen] = useState(isTab ? false : true);
+  console.log(`mobile screen: ${isTab}`);
+
+  useEffect(() => {
+    if (isTab) {
+      // mobile
+      setIsOpen(false);
+    } else {
+      // desktop
+      setIsOpen(true);
+    }
+  }, [isTab]);
+
+  const SidebarAnimation = isTab
+    ? // mobile view
+      {
+        open: {
+          x: 0,
+          width: "16rem",
+          transition: {
+            damping: 40,
+          },
+        },
+        closed: {
+          x: -250,
+          width: 0,
+          transition: {
+            damping: 40,
+            delay: 0.15,
+          },
+        },
+      }
+    : {
+        // System view
+        open: {
+          width: "16rem",
+          transition: {
+            damping: 40,
+          },
+        },
+        closed: {
+          width: "4rem",
+          transition: {
+            damping: 40,
+          },
+        },
+      };
 
   const subMenusList = [
     {
@@ -50,10 +85,15 @@ const Sidebar = () => {
     },
   ];
 
-  const [isOpen, setIsOpen] = useState(true);
-
   return (
     <div>
+      {/* overlay only shown on mobile when sidebar is open */}
+      <div
+        className={`md:hidden fixed inset-0 max-h-screen z-[998] bg-zinc-500/50 ${
+          isOpen ? "block" : "hidden"
+        }`}
+        onClick={() => setIsOpen(false)}
+      ></div>
       <motion.div
         variants={SidebarAnimation}
         animate={isOpen ? "open" : "closed"}
@@ -93,7 +133,8 @@ const Sidebar = () => {
             </li>
 
             {/* only show submenus when sidebar is open */}
-            {isOpen && (
+            {/* mobile view shows submenus */}
+            {(isOpen || isTab) && (
               <div className="border-y py-5 border-slate-300">
                 <small className="pl-3 text-slate-500 inline-block mb-2">
                   Product categories
@@ -109,7 +150,7 @@ const Sidebar = () => {
             <li>
               <NavLink to="/settings" className={"link"}>
                 <SlSettings size={23} className="min-w-max" />
-                <span className={`${isOpen && "block"} hidden`}>Storage</span>
+                {isOpen && <span>Settings</span>}
               </NavLink>
             </li>
           </ul>
@@ -145,6 +186,9 @@ const Sidebar = () => {
           <IoIosArrowBack size={25} />
         </motion.div>
       </motion.div>
+      <div className="m-3 md:hidden" onClick={() => setIsOpen(true)}>
+        <MdMenu size={25} />
+      </div>
     </div>
   );
 };
