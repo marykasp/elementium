@@ -22,5 +22,5 @@
 
 /* applied directly active class - route match */
 .active {
-  @apply bg-blue-100 text-blue-600;
+  @apply bg-blue-100 text-blue-600 hover:bg-blue-100;
 }

@@ -21,6 +21,9 @@ function App() {
             <Route path="stats" element={<Blank />} />
             <Route path="analytics/:aID" element={<Analytics />} />
             <Route path="build/:bID" element={<Build />} />
+            <Route path="user" element={<Blank />} />
+            <Route path="messages" element={<Blank />} />
+            <Route path="cart" element={<Blank />} />
           </Route>
         </Routes>
       </BrowserRouter>

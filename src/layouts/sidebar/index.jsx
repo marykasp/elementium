@@ -104,7 +104,7 @@ const Sidebar = () => {
         variants={SidebarAnimation}
         initial={{ x: isTab ? -250 : 0 }}
         animate={isOpen ? "open" : "closed"}
-        className="bg-white text-gray shadow-xl z-[999] w-[16rem] max-w-[16rem] h-screen overflow-hidden md:relative fixed"
+        className="bg-white text-gray shadow-xl z-[999] w-[16rem] max-w-[16rem] h-screen  md:relative fixed"
       >
         {/* Logo */}
         <div className="flex items-center gap-2.5 font-medium border-b border-slate-300 py-3 mx-3">
@@ -157,7 +157,13 @@ const Sidebar = () => {
             <li>
               <NavLink to="/settings" className={"link"}>
                 <SlSettings size={23} className="min-w-max" />
-                {isOpen && <span>Settings</span>}
+                <span
+                  className={`duration-500 whitespace-pre ${
+                    !isOpen && "opacity-0 overflow-hidden translate-x-28"
+                  }`}
+                >
+                  Settings
+                </span>
               </NavLink>
             </li>
           </ul>
