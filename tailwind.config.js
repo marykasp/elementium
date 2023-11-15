@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Montserrat: "Montserrat",
+        // Montserrat: "Montserrat",
       },
       colors: {
         primary: {
