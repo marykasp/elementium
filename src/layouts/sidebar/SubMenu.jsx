@@ -6,6 +6,18 @@ import { useState } from "react";
 const SubMenu = ({ data }) => {
   const { pathname } = useLocation();
   const [subMenuOpen, setSubMenuOpen] = useState(false);
+  // const [query, setQuery] = useState("");
+
+  // // multi search with one input
+  // const handleSearch = (e) => {
+  //   setQuery(e.target.value);
+  //   const filteredData = Data.filter((item) =>
+  //     item.first_name.includes(e.target.query),
+  //   );
+  //   Data.filter((item) => item.fist_name.includes(e.target.data) || item.last_name.includes(e.target.value));
+
+  //   setFilteredData(filteredData);
+  // };
 
   return (
     <>
