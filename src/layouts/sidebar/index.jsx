@@ -113,7 +113,7 @@ const Sidebar = () => {
             alt=""
             width={45}
           />
-          <span className="text-xl whitespace-pre">Elementium</span>
+          {isOpen && <span className="text-xl whitespace-pre">Elementium</span>}
         </div>
 
         {/* Menus */}
